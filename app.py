@@ -291,4 +291,22 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+# -------------------------------
+# Download sample test dataset
+# -------------------------------
+st.sidebar.markdown("### 📥 Download Sample Test Data")
+
+try:
+    sample_test_df = pd.read_csv("data/test_data_dtc_labeled.csv")
+
+    st.sidebar.download_button(
+        label="⬇️ Download Labeled Test CSV",
+        data=sample_test_df.to_csv(index=False),
+        file_name="test_data_dtc_labeled.csv",
+        mime="text/csv"
+    )
+
+except Exception:
+    st.sidebar.info("ℹ️ Sample test dataset not available for download.")
+
 
