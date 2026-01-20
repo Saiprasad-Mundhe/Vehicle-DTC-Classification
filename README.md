@@ -105,4 +105,34 @@ A **Streamlit-based interactive web application** was developed and deployed usi
 ---
 
 ## 📁 Project Structure
+vehicle-dtc-classification/
+│── app.py
+│── requirements.txt
+│── README.md
+│── model/
+│ ├── logistic_regression.pkl
+│ ├── decision_tree.pkl
+│ ├── knn.pkl
+│ ├── naive_bayes.pkl
+│ ├── random_forest.pkl
+│ ├── xgboost.pkl
+│ ├── scaler.pkl
+│ └── label_encoder.pkl
+
+---
+
+## ✅ Conclusion
+
+This project demonstrates the effectiveness of ensemble machine learning techniques, particularly **XGBoost**, in diagnosing vehicle faults from OBD-II sensor data.  
+The deployed Streamlit application enables interactive evaluation of trained models on labeled test datasets, making the system suitable for practical diagnostic analysis.
+
+---
+
+## 🔒 Academic Integrity Statement
+
+All code, preprocessing steps, model training, and application development were performed independently.  
+No external templates or plagiarized code were used in this project.
+
+---
+
 
