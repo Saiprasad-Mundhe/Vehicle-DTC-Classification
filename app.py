@@ -1,7 +1,3 @@
-# ===============================
-# Streamlit App: Vehicle DTC Classification
-# Premium UI + Assignment-Compliant Backend
-# ===============================
 
 import streamlit as st
 import pandas as pd
@@ -19,27 +15,17 @@ from sklearn.metrics import (
     confusion_matrix
 )
 
-# -------------------------------
-# SAFE DEFAULTS
-# -------------------------------
 models_loaded = False
 models = None
 scaler = None
 label_encoder = None
 
-# -------------------------------
-# Page configuration
-# -------------------------------
 st.set_page_config(
     page_title="Vehicle DTC Classification",
     page_icon="🚗",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
-# ===============================
-# Load trained models & artifacts
-# ===============================
 
 @st.cache_resource
 def load_models():
@@ -64,9 +50,6 @@ def load_models():
 
 models, scaler, label_encoder, models_loaded = load_models()
 
-# -------------------------------
-# Custom CSS (UI polish only)
-# -------------------------------
 st.markdown("""
 <style>
 .big-title {
@@ -87,9 +70,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# -------------------------------
-# Header
-# -------------------------------
 st.markdown('<div class="big-title">🚗 Vehicle Diagnostic Trouble Code Classification</div>', unsafe_allow_html=True)
 st.markdown(
     '<div class="sub-title">'
@@ -101,9 +81,6 @@ st.markdown(
 
 st.markdown("---")
 
-# -------------------------------
-# Sidebar
-# -------------------------------
 st.sidebar.header("⚙️ Input Controls")
 
 if models_loaded:
@@ -130,9 +107,7 @@ uploaded_file = st.sidebar.file_uploader(
     type=["csv", "xlsx"]
 )
 
-# -------------------------------
-# Layout columns
-# -------------------------------
+
 left_col, right_col = st.columns([2, 3])
 
 with left_col:
@@ -143,9 +118,6 @@ with right_col:
     st.subheader("🔥 Confusion Matrix")
     st.info("Confusion matrix based on actual vs predicted DTC classes.")
 
-# ===============================
-# Dataset handling
-# ===============================
 
 expected_features = [
     'Barometric Pressure',
@@ -219,9 +191,6 @@ if uploaded_file is not None:
         st.error("❌ Error reading uploaded dataset")
         st.exception(e)
 
-# ===============================
-# Evaluation (UNCHANGED LOGIC, UI POLISHED)
-# ===============================
 
 if test_df is not None and y_true_labels is not None and models_loaded:
 
@@ -253,7 +222,6 @@ if test_df is not None and y_true_labels is not None and models_loaded:
 
     y_pred = model.predict(X_eval)
 
-    # ---- Metrics (LEFT COLUMN) ----
     with left_col:
         acc = accuracy_score(y_true, y_pred)
         prec = precision_score(y_true, y_pred, average="macro")
@@ -281,7 +249,7 @@ if test_df is not None and y_true_labels is not None and models_loaded:
                 unsafe_allow_html=True
             )
 
-    # ---- Confusion Matrix (RIGHT COLUMN) ----
+
     with right_col:
         st.markdown(
             """
@@ -313,9 +281,7 @@ if test_df is not None and y_true_labels is not None and models_loaded:
 
         st.markdown("</div>", unsafe_allow_html=True)
 
-# -------------------------------
-# Footer (cosmetic only)
-# -------------------------------
+
 st.markdown(
     """
     <hr>
@@ -325,3 +291,4 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
